@@ -70,6 +70,18 @@ describe("hatchDigipet", () => {
 });
 
 describe("trainDigipet", () => {
+  test("when there is no current digipet, it creates a digipet with default initial values and returns it", () => {
+    // setup
+    setDigipet(undefined);
+
+    // act
+    const digipet = hatchDigipet();
+
+    // assert
+    expect(digipet).toStrictEqual(INITIAL_DIGIPET);
+    expect(getDigipet()).toStrictEqual(INITIAL_DIGIPET);
+  });
+
   it("increases digipet discipline by 10 and decreases happiness by 5", () => {
     // setup
     setDigipet(INITIAL_DIGIPET);
@@ -110,6 +122,17 @@ describe("trainDigipet", () => {
 });
 
 describe("walkDigipet", () => {
+  test("when there is no current digipet, it creates a digipet with default initial values and returns it", () => {
+    // setup
+    setDigipet(undefined);
+
+    // act
+    const digipet = hatchDigipet();
+
+    // assert
+    expect(digipet).toStrictEqual(INITIAL_DIGIPET);
+    expect(getDigipet()).toStrictEqual(INITIAL_DIGIPET);
+  });
   it("increases digipet happiness by 10 and decreases nutrition by 5 (to represent need for sustenance)", () => {
     // setup
     setDigipet(INITIAL_DIGIPET);
@@ -150,6 +173,17 @@ describe("walkDigipet", () => {
 });
 
 describe("ignoreDigipet", () => {
+  test("when there is no current digipet, it creates a digipet with default initial values and returns it", () => {
+    // setup
+    setDigipet(undefined);
+
+    // act
+    const digipet = hatchDigipet();
+
+    // assert
+    expect(digipet).toStrictEqual(INITIAL_DIGIPET);
+    expect(getDigipet()).toStrictEqual(INITIAL_DIGIPET);
+  });
   it("if all stats above 10, decreases all by 10", () => {
     // setup
     setDigipet(INITIAL_DIGIPET);
