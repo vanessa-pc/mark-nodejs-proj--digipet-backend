@@ -43,7 +43,7 @@ app.get("/digipet/hatch", (req, res) => {
   const digipet = getDigipet();
   if (digipet) {
     res.json({
-      message: "You can't hatch a digipet now because you already have one!",
+      message: "You can't hatch a digipet now because you already have one! Try rehoming your existing digipet with /digipet/rehome",
       digipet,
     });
   } else {
