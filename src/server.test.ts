@@ -122,7 +122,7 @@ describe("action routes", () => {
       const response = await supertest(app).get("/digipet/feed");
 
       // response includes a relevant message
-      expect(response.body.message).toMatch(/feed/i);
+      expect(response.body.message).toMatch(/feed/i || /fed/i);
 
       // response includes digipet data
       expect(response.body.digipet).toHaveProperty("happiness");

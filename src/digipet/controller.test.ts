@@ -6,7 +6,7 @@ import {
 } from "./controller";
 import { getDigipet, INITIAL_DIGIPET, setDigipet } from "./model";
 
-describe.skip("feedDigipet", () => {
+describe("feedDigipet", () => {
   it("increases digipet nutrition by 10 and decreases discipline by 5", () => {
     // setup
     setDigipet(INITIAL_DIGIPET);
@@ -87,7 +87,7 @@ describe("trainDigipet", () => {
 
   it("cannot increase discipline past 100", () => {
     // setup
-    setDigipet({ happiness: 50, nutrition: 50, discipline: 90 });
+    setDigipet({ happiness: 50, nutrition: 50, discipline: 95 });
 
     // act
     trainDigipet();
