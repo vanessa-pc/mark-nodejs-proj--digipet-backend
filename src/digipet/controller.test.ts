@@ -2,6 +2,7 @@ import {
   feedDigipet,
   hatchDigipet,
   ignoreDigipet,
+  rehomeDigipet,
   trainDigipet,
   walkDigipet,
 } from "./controller";
@@ -211,5 +212,57 @@ describe("ignoreDigipet", () => {
     expect(getDigipet()).toHaveProperty("nutrition", 0);
     expect(getDigipet()).toHaveProperty("discipline", 0);
     expect(getDigipet()).toHaveProperty("happiness", 0);
+  });
+});
+
+describe("rehomeDigipet", () => {
+  test("when there is no current digipet, it creates a digipet with default initial values and returns it", () => {
+    // setup
+    setDigipet(undefined);
+
+    // act
+    const digipet = hatchDigipet();
+
+    // assert
+    expect(digipet).toStrictEqual(INITIAL_DIGIPET);
+    expect(getDigipet()).toStrictEqual(INITIAL_DIGIPET);
+  });
+  it("Increase discipline by 5 and decrease happiness by 5", () => {
+    // setup
+    setDigipet(INITIAL_DIGIPET);
+    expect(getDigipet()).toStrictEqual(INITIAL_DIGIPET);
+
+    // act
+    rehomeDigipet();
+
+    // assert
+    expect(getDigipet()).toStrictEqual({
+      happiness: INITIAL_DIGIPET.happiness -5,
+      discipline: INITIAL_DIGIPET.discipline + 5,
+      nutrition: INITIAL_DIGIPET.nutrition
+    });
+  });
+
+  it("cannot decrease happiness below 0", () => {
+    // setup
+    setDigipet({ happiness: 0, nutrition: 50, discipline: 50 });
+
+    // act
+    rehomeDigipet();
+
+    // assert
+    expect(getDigipet()).toHaveProperty("discipline", 55);
+    expect(getDigipet()).toHaveProperty("happiness", 0);
+  });
+  it("cannot increase discipline above 100", () => {
+    // setup
+    setDigipet({ happiness: 50, nutrition: 50, discipline: 100 });
+
+    // act
+    rehomeDigipet();
+
+    // assert
+    expect(getDigipet()).toHaveProperty("discipline", 100);
+    expect(getDigipet()).toHaveProperty("happiness", 45);
   });
 });
